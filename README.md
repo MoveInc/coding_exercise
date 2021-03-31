@@ -12,7 +12,7 @@ This notional exercise implements a basic REST service which returns all anagram
 
 ### REST Service
 
-After starting the server, the REST endpoint can be invoked using http://localhost:8000/?term=&lt;WORD> where &lt;WORD> is the term to find anagrams for.  The response should be a JSON payload containing a string array of all matching anagrams.
+After starting the server, the REST endpoint can be invoked using http://localhost:8000/?term=WORD where *WORD* is the term to find anagrams for.  The response should be a JSON payload containing a string array of all matching anagrams.
 
 ## Problems
 
