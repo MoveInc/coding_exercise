@@ -7,8 +7,13 @@ const app = express();
 const port = 8000;
 const service = new AnagramService('src/static/dictionary.txt');
 
+/**
+ * Basic HTTP Service which provides a list of anagrams
+ * for a give word.
+ */
 app.get('/', async (req, res) => {
   let term = req.query[TERM_PARAM];
+
   if (!term || term.trim().length === 0) {
     res.status(400);
     res.send({error: 'query parameter "term" is required'});

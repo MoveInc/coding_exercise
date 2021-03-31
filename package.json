@@ -4,7 +4,7 @@
   "description": "Basic JS Exercise",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "eslint src && jest",
     "start": "node src/index.js"
   },
   "repository": {
@@ -21,6 +21,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "eslint": "^7.22.0"
+    "eslint": "^7.22.0",
+    "jest": "^26.6.3"
   }
 }
