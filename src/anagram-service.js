@@ -11,7 +11,7 @@ class AnagramService {
    */
   constructor(dictionaryFilePath) {
     this.dictionaryFilePath = dictionaryFilePath;
-    this.wordsMap = [];
+    this.wordsArray = [];
   }
 
   /**
@@ -28,7 +28,7 @@ class AnagramService {
         const lines = data.toString().split("\n");
 
         lines.forEach((line) => {
-          this.wordsMap.push(line.toLowerCase().trim());
+          this.wordsArray.push(line.toLowerCase().trim());
         });
         return resolve(this);
       });
@@ -41,7 +41,7 @@ class AnagramService {
    * @returns A string[] of anagram matches
    */
   async getAnagrams(term) {
-    if (!this.wordsMap || this.wordsMap.length === 0) {
+    if (!this.wordsArray || this.wordsArray.length === 0) {
       throw Error("Error: Dictionary not initialized");
     }
     const termCharacterMap = {};
@@ -53,7 +53,7 @@ class AnagramService {
         termCharacterMap[character] = 1;
       }
     }
-    const filteredWordsMapKeys = this.wordsMap.filter((word) => {
+    const filteredWordsMapKeys = this.wordsArray.filter((word) => {
       const hasSameLength = word.length === term.length;
       const wordCharacterMap = {};
       for (const index in Array.from(word).sort()) {
