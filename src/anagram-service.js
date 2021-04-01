@@ -1,4 +1,5 @@
 const fs = require("fs");
+const lodash = require("lodash");
 /**
  * Looks up anagrams of a given word based on the
  * word dictionary provided in the constructor.
@@ -43,9 +44,31 @@ class AnagramService {
     if (!this.wordsMap || this.wordsMap.length === 0) {
       throw Error("Error: Dictionary not initialized");
     }
+    const termCharacterMap = {};
+    for (const index in Array.from(term).sort()) {
+      const character = term[index];
+      if (termCharacterMap[character]) {
+        termCharacterMap[character]++;
+      } else {
+        termCharacterMap[character] = 1;
+      }
+    }
+    const filteredWordsMapKeys = this.wordsMap.filter((word) => {
+      const hasSameLength = word.length === term.length;
+      const wordCharacterMap = {};
+      for (const index in Array.from(word).sort()) {
+        const character = word[index];
+        if (wordCharacterMap[character]) {
+          wordCharacterMap[character]++;
+        } else {
+          wordCharacterMap[character] = 1;
+        }
+      }
+      const KeysAreEqual = lodash.isEqual(wordCharacterMap, termCharacterMap);
 
-    // TODO: The anagram lookup 🤦‍♂️
-    return this.wordsMap;
+      return hasSameLength && KeysAreEqual;
+    });
+    return filteredWordsMapKeys;
   }
 }
 
