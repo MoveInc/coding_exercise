@@ -54,6 +54,7 @@ class AnagramService {
 
       return hasSameLength && MapsAreEqual;
     });
+
     return filteredWordsMapKeys;
   }
 
