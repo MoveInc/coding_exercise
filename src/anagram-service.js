@@ -44,31 +44,30 @@ class AnagramService {
     if (!this.wordsArray || this.wordsArray.length === 0) {
       throw Error("Error: Dictionary not initialized");
     }
-    const termCharacterMap = {};
-    for (const index in Array.from(term).sort()) {
-      const character = term[index];
-      if (termCharacterMap[character]) {
-        termCharacterMap[character]++;
-      } else {
-        termCharacterMap[character] = 1;
-      }
-    }
+    const termCharacterMap = this.getCharacterMap(term);
+
     const filteredWordsMapKeys = this.wordsArray.filter((word) => {
       const hasSameLength = word.length === term.length;
-      const wordCharacterMap = {};
-      for (const index in Array.from(word).sort()) {
-        const character = word[index];
-        if (wordCharacterMap[character]) {
-          wordCharacterMap[character]++;
-        } else {
-          wordCharacterMap[character] = 1;
-        }
-      }
-      const KeysAreEqual = lodash.isEqual(wordCharacterMap, termCharacterMap);
+      
+      const wordCharacterMap = this.getCharacterMap(word);
+      const MapsAreEqual = lodash.isEqual(wordCharacterMap, termCharacterMap);
 
-      return hasSameLength && KeysAreEqual;
+      return hasSameLength && MapsAreEqual;
     });
     return filteredWordsMapKeys;
+  }
+
+  getCharacterMap(word) {
+    const map = {};
+    for (const index in Array.from(word).sort()) {
+      const character = word[index];
+      if (map[character]) {
+        map[character]++;
+      } else {
+        map[character] = 1;
+      }
+    }
+    return map;
   }
 }
 
