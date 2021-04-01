@@ -48,7 +48,7 @@ class AnagramService {
 
     const filteredWordsMapKeys = this.wordsArray.filter((word) => {
       const hasSameLength = word.length === term.length;
-      
+      if (!hasSameLength) return false;
       const wordCharacterMap = this.getCharacterMap(word);
       const MapsAreEqual = lodash.isEqual(wordCharacterMap, termCharacterMap);
 
