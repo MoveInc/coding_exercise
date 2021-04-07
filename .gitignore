@@ -8,3 +8,10 @@ coverage
 
 yarn-error.log
 .DS_Store
+
+bin
+build
+.classpath
+.settings
+.project
+.gradle

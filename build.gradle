@@ -1,0 +1,49 @@
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    main {
+         java {
+            srcDirs = ['src/main']
+         }
+    }
+
+    test {
+        java {
+            srcDirs = ['src/test']
+        }
+    }
+}
+
+application {
+    mainClassName = 'com.move.exercise.Main'
+}
+
+task copyTestResources(type: Copy) {
+    from "${projectDir}/src/main"
+    into "${buildDir}/classes/main"
+}
+processTestResources.dependsOn copyTestResources
+
+dependencies {
+	compile 'org.eclipse.jetty:jetty-server:9.4.3.v20170317'
+    compile 'org.eclipse.jetty:jetty-servlet:9.4.3.v20170317'
+    compile 'com.google.code.gson:gson:2.8.2'
+    
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.0'
+    testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+

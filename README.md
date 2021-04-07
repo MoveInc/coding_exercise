@@ -1,4 +1,4 @@
-# Anagram Finder REST Exercise
+# Anagram Finder REST Exercise, Java Edition
 
 This notional exercise implements a basic REST service which returns all anagrams of a given word based on an internal word dictionary.  At least, that's what it's _supposed_ to do.  Continue reading for more details.
 
@@ -6,13 +6,13 @@ This notional exercise implements a basic REST service which returns all anagram
 
 ### Scripts
 
-- `> npm i` - install dependencies
-- `> npm test` - run unit tests
-- `> npm start` - run the server
+- `> ./gradlew build` - install dependencies
+- `> ./gradlew test` - run unit tests
+- `> ./gradlew run --args dictionary.txt` - run the server
 
 ### REST Service
 
-After starting the server, the REST endpoint can be invoked using http://localhost:8000/?term=WORD where *WORD* is the term to find anagrams for.  The response should be a JSON payload containing a string array of all matching anagrams.
+After starting the server, the REST endpoint can be invoked using http://localhost:8090/anagram?term=WORD where *WORD* is the term to find anagrams for.  The response should be a JSON payload containing a string array of all matching anagrams.
 
 ## Problems
 
