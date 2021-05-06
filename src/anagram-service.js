@@ -12,7 +12,7 @@ class AnagramService {
    */
   constructor(dictionaryFilePath) {
     this.dictionaryFilePath = dictionaryFilePath;
-    this.wordsMap = new Map();
+    this.wordsList = [];
   }
 
   /**
@@ -29,7 +29,7 @@ class AnagramService {
         const lines = data.toString().split('\n');
 
         lines.forEach((line) => {
-          this.wordsMap.set(line.toLowerCase(), [line]); 
+          this.wordsList.push(line.trim().toLowerCase());
         });
         return resolve(this);
       });
@@ -42,12 +42,12 @@ class AnagramService {
    * @returns A string[] of anagram matches
    */
   async getAnagrams(term) {
-    if (!this.wordsMap || this.wordsMap.size === 0) {
+    if (!this.wordsList || this.wordsList.length === 0) {
       throw Error('Error: Dictionary not initialized');
     }
 
     // TODO: The anagram lookup 🤦‍♂️
-    return this.wordsMap.get(term);
+    return this.wordsList[this.wordsList.indexOf(term)];
   }
 }
 
